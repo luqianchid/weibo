@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    {include file="common/head"/}
+
+    <title>我的关注</title>
+</head>
+<body>
+<div id="content">
+    {include file="common/nav"/}
+    {include file="common/homepage"/}
+                <!--{循环开始，每页5条}-->
+
+                <div class="focus-box">
+                    <div class="focus-cont">
+                        {volist name="fans" id="f"}
+                        <div class="focus-row">
+                            <div class="focus-cell">
+                                <div class="focus-img"><a href="{:url('Homepage/index',['u'=>$f['id']])}"><img src="__AVATAR__/{$f.avatar}" alt="{$f.username}"></a></div>
+                                <div class="re-focus">
+                                    <div class="focus-name">{$f.username}</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="focus-cell">
+                                <div class="re-focus">
+                                    <div class="focus-name">{$f.email}</div>
+                                    <div class="focus-sign">{$f.signnote}</div>                                    
+                                </div>
+                            </div>
+                        </div>
+                        {/volist}
+                    </div>
+                </div>
+                <!--{循环结束}-->
+                <div class="page-list">
+                    {$fans->render()}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <div class="h_25"></div>
+
+</div>
+{include file="common/footer"/}
+{include file="common/js"/}
+</body>
+</html>
+
+

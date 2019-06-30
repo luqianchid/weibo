@@ -1,0 +1,27 @@
+<div class="col-md-3">
+		<div class="user_show">
+				<div class="cover">
+						<a href="{:url('Homepage/index',['u'=>$userInfo['uid']])}"><img class="head-image" src="__AVATAR__/{$userInfo.avatar}" alt="{{$Request.session.username}"></a>
+				</div>
+				<div class="user-info">
+						{if condition="$Request.session.username!=null"}
+						<div class="name-show">{$Request.session.username}</div>
+						<div class="focus-area">
+								<ul class="f-list">										
+									<li class="f-list-item"><a href="{:url('homepage/focus',['u'=>$userInfo['uid']])}">{$userInfo.focus}</a><span>关注</span></li>
+									<li class="f-list-item"><a href="{:url('homepage/fans',['u'=>$userInfo['uid']])}">{$userInfo.fans}</a><span>粉丝</span></li>
+									<li class="f-list-item"><a href="{:url('Homepage/index',['u'=>$userInfo['uid']])}">{$userInfo.posts}</a><span>说说</span></li>									
+								</ul>
+						</div>
+						{else /}
+						<div class="name-show">游客</div>
+						<div class="focus-area">
+								<ul class="f-list">
+										<li class="f-list-item"><a href="">0</a><span>关注</span></li>
+										<li class="f-list-item"><a href="">0</a><span>粉丝</span></li>
+										<li class="f-list-item"><a href="">0</a><span>说说</span></li>
+								</ul>
+						</div>
+						{/if}
+				</div>
+		</div>

@@ -1,0 +1,9 @@
+<div class="col-md-2">
+		<ul class="list-group hidden-md hidden-sm hidden-xs">
+				<!--这里最好建一个数据表，根据表添加栏目，循环-->
+				<li class="list-group-item"><a href="{:url('index/index')}">首页</a></li>
+				{volist name="catelist" id='c'}
+				<li class="list-group-item"><a href="{:url('cate/index',['cateid'=>$c['cateid']])}">{$c.catename}</a></li>
+				{/volist}
+		</ul>
+</div>

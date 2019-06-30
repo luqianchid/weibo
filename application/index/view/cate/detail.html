@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+		{include file="common/head"/}
+
+		<title>文章页</title>
+</head>
+<body>
+<div id="content">
+		{include file="common/nav"/}
+		<!--nav结束-->
+
+		<hr class="h_10">
+
+		<div class="container">
+				<div class="width_1000">
+						{volist name="detail" id="d"}
+						<div class="art-bg"><img src="{$d.img_url}"/></div>
+						<div class="article-bd">
+								<div class="article-head">
+										{$d.title}
+								</div>
+								<div class="article-info">
+										<ul class="art-info">
+												<li><a href="{:url('cate/index',['cateid'=>$d['cateid']])}">{$d.cateid}</a></li>
+                                                <li><a>发布于{$d.create_time}</a></li>
+                                                <li class="pull-right"><a href="{$d.ori_url}">原文链接</a></li>
+										</ul>
+								</div>
+								<div class="article-cont">
+									<div class="article-detail">
+										<div class="article-intro">
+												<div class="article-i-style">{$d.content|intro=###}</div>
+										</div>
+										<div class="article-richtext">
+                                            {$d.content}
+                                            {if $d.img_url != ''}
+                                            <img src="{$d.img_url}">
+                                            {else/}
+                                            {/if}
+										</div>												
+									</div>
+								</div>
+								</div>								
+								{/volist}
+
+						<div class="h_25"></div>
+						<div class="article-nominate">
+								<div class="title-bar">推荐阅读</div>
+								<div class="article-no-list">
+										<ul class="art-no-list">
+												{volist name="calist" id="li"}
+												<li class="art-no-li-item">
+														<a class="nomi-title" href="{:url('Cate/detail',['cateid'=>$li['cateid'],'caid'=>$li['ca_id']])}">{$li.title}</a>
+														<p>{$li.content|intro=###}</p>
+												</li>
+												{/volist}
+										</ul>
+										<a class="ul-bot" href="{:url('Cate/index',['cateid'=>$li['cateid']])}">查看更多</a>
+								</div>
+						</div>
+				</div>
+		</div>
+		<div class="h_25"></div>
+		{include file="common/footer"/}
+</div>
+
+{include file="common/js"/}
+</body>
+</html>

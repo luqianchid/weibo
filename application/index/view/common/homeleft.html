@@ -1,0 +1,43 @@
+<div class="col-md-4 col-md-offset-1">
+        <div class="per-show">
+                <div class="focus-area">
+                        <ul class="f-list">
+                                <li class="f-list-item"><a href="{:url('homepage/focus',['u'=>$userInfo['uid']])}">{$userInfo.focus}</a><span>关注</span></li>
+                                <li class="f-list-item"><a href="{:url('homepage/fans',['u'=>$userInfo['uid']])}">{$userInfo.fans}</a><span>粉丝</span></li>
+                                <li class="f-list-item"><a href="{:url('homepage/index',['u'=>$userInfo['uid']])}">{$userInfo.posts}</a><span>说说</span></li>
+                        </ul>
+                </div>
+        </div>
+    
+        <div class="hots-list">
+    
+                <div class="hot_head">
+                        <a class="pull-left" href="{:url('index/index')}">最近微博</a>
+                </div>
+    
+                <ul class="fri-list">
+                        <!--{最近微博开始，限定5条,点击更多跳转列表页}-->
+                    {volist name="hot_topic" id="h"}
+                    <li>
+                        <div class="fri-img"><img src="__AVATAR__/{$h.avatar}" alt="{$h.username}"></div>
+                        <div class="fri-cont">
+                            <div class="fri-name">
+                                <a href="{:url('Homepage/index',['u'=>$h['user_id']])}">{$h.username}</a>
+                            </div>
+                            <div class="cont-text">
+                                <a href="{:url('Index/getcomment',['pid'=>$h['pid']])}">
+                                        {$h.content}
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                    {/volist}                  
+                                            
+                                            <!--{高热微博结束}-->
+                </ul>
+                <!--点击更多跳转列表页-->
+                <a class="hot_bot" href="{:url('index/index')}">查看更多</a>
+        </div>
+    
+    
+    </div>

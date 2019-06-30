@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    {include file="common/head"/}
+    <title>主页</title>
+</head>
+<body>
+<div id="content">
+    {include file="common/nav"/}
+    <hr class="h_10">
+    <div class="container">
+        <!--主分区-->
+        <div class="row">
+            <!--左导航-->
+            {include file="common/leftbar"/}
+            <!--内容区域-->
+            <div class="col-md-7">        
+
+                {volist name="praise" id="p"}
+                <div class="sendbox">
+                    <div class="head-bar p_30">  
+                        <div class="head-name m_15">{$p.uname}</div>
+                        <div class="head-time">{$p.p_time|tranTime=###}</div>  
+                    </div>
+                    <div class="content-text m_0">
+                        赞了您的微博  //                                                      
+                    </div> 
+                    <div class="content-text">                         
+                        <div class="glyphicon glyphicon-triangle-top gray_font"></div>
+                        <div class="quotes_cont">                            
+                            <div class="quotes-head-bar">                               
+                                <div class="quotes-head-name"><a href="{:url('Homepage/index',['u'=>$p['puid']])}">{$p.username}</a></div>
+                            </div>
+                            {if $p.content != null/}
+                            <div class="quotes-content-text">
+                                <p>{$p.content}</p>
+                            </div>
+                            <div class="quotes_func">
+                                <div class="quotes-head-time pull-left">{$p.add_time|tranTime=###}</div>                                
+                            </div> 
+                            
+                            {else/}   
+                            <div class="quotes-content-text">
+                                <p>对方已删除该条说说</p>
+                            </div>                    
+                            {/if}
+                        </div> 
+                    </div>  
+                                                        
+                </div>
+                {/volist}
+                <!--xunhuan-->
+                <!--分页每页十条-->
+                <div class="page-list">
+                    {$praise->render()}
+                </div>
+                <!--分页-->
+            </div>
+            <!--右侧信息-->
+            {include file="common/right1"/}
+            
+            <div class="hot_topic">
+                    <div class="hot_head">
+                        <a class="pull-left" href="">好友头条</a>						
+                    </div>
+                    <div class="hot_ul">
+                        <ul class="list-group">
+                            {volist name="artlist" id="t"}
+                            <li class="list-group-item"><a href="{:url('Article/index',['artid'=>$t['aid']])}">{$t.title}</a><span class="pull-right">{$t.create_time|tranTime=###}</span>
+                            </li>
+                            {/volist}
+                        </ul>
+                    </div>
+                    <a class="hot_bot" href="{:url('Article/artlist')}">查看更多</a>
+            </div>
+            {include file="common/rightbar"/}
+        </div>
+    </div>
+    <div class="h_25"></div>
+    {include file="common/footer"/}
+</div>
+{include file="common/js"/}
+</body>
+</html>

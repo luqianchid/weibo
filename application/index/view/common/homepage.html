@@ -1,0 +1,36 @@
+<hr class="h_10">
+<div class="container">
+		<!--主分区 封面-->
+		<div class="row">
+				<div class="col-lg-4 col-md-offset-4 text-center">
+								
+					{volist name="user" id="user"}
+					<img class="per-image" src="__AVATAR__/{$user.avatar}" alt="{$user.username}">
+					<p class="per-name">{$user.username}</p>
+					{if $Request.session.uid!=$user.id}
+						{if $flag!=0}
+							<div class="focus-friends-w" isFocus="1" data-user="{$user.id}">取消关注</div>
+							<p class="per-sign">{$user.signnote}</p>
+						{else/}	
+							<div class="focus-friends" isFocus="0" data-user="{$user.id}">关注</div>
+							<p class="per-sign">{$user.signnote}</p>
+						{/if}
+					{else/}
+						<p class="reg-name">注册于{$user.create_time|tranTime=###}</p>
+						<p class="per-sign">{$user.signnote}</p>
+					{/if}					
+					{/volist}
+				</div>
+		</div>
+		<div class="row">
+				<div class="tab-content" >
+						<div class="tab-pane active" id="home">
+								{include file='common/homeleft'/}
+								<div class="col-md-6 per-send">
+										<div class="curr-bar">
+												<ul class="nav nav-tabs per-nav" role="tablist" id="tab-list2">
+														<li><a href="{:url('Homepage/index',['u'=>$userid])}" >说说</a></li>
+														<li><a href="{:url('Homepage/Article',['u'=>$userid])}">文章</a></li>
+														<li><a href="{:url('Homepage/Focus',['u'=>$userid])}">关注</a></li>
+												</ul>
+										</div>

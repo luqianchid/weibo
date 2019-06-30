@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {include file="common/head"/}
+    <title>公告管理页面</title>
+</head>
+<body>
+        {include file="common/nav"/}   
+        {include file="common/left"/}
+<div class="col-md-10 right">
+    <a href="{:url('info/add')}" class="btn btn-default">+ 添加新公告</a>
+    <table class="table table-striped table-bordered">
+            <thead class="text-center">
+                <tr>
+                    <th class="text-center" width="100px">InfoID</th>
+                    <th class="text-center">公告标题</th>
+                    <th class="text-center">公告作者</th>
+                    <th class="text-center">创建时间</th>                               
+                    <th class="text-center" width="240px">操作</th>
+                </tr>
+                </thead>
+                <tbody>   
+                {volist name='infos' id='i'}   
+                <tr>
+                    <td align="center">{$i.infoid}</td>
+                    <td align="center">{$i.title}</a></td>
+                    <td align="center">{$i.admin_name}</td>  
+                    <td align="center">{$i.create_time|date="m-d H:i",###}</td>                              
+                    <td align="center">                                    
+                        <a href="{:url('info/del',['infoid'=>$i['infoid']])}" onClick="warning('确实要删除吗')" class="btn btn-danger btn-sm shiny">
+                            <i class="fa fa-trash-o"></i> 删除
+                        </a>
+                        <a href="{:url('info/edit',['infoid'=>$i['infoid']])}" class="btn btn-primary btn-sm shiny">
+                            <i class="fa fa-trash-o"></i> 编辑
+                        </a>
+                    </td>
+                </tr>     
+                {/volist}               
+            </tbody>
+            <div class="page-list">
+                {$infos->render()}
+            </div>
+    </table>
+    
+</div>
+<script>
+    function warning(str){
+        alert(str);
+    }
+</script>
+</body>
+</html>

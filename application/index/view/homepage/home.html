@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    {include file="common/head"/}
+
+    <title>我的主页</title>
+</head>
+<body>
+<div id="content">
+    {include file="common/nav"/}
+    {include file="common/homepage"/}
+
+                        <!--{循环开始，每页4条}-->
+                        <div class="m_25"></div>                      
+                        
+                        {volist name="talk" id="t"}
+                        <div class="sendbox">
+                            <div class="head-bar">
+                                <div class="head-image"><img src="__AVATAR__/{$t.avatar}" alt="用户名"></div>
+                                <div class="head-name m_15">{$t.username}</div>
+                                <div class="head-time">{$t.add_time|tranTime=###}</div>  
+                                {if $t.user_id != $Request.session.uid /}                         
+                                {else/}    
+                                <div class="dropdown head-menu off">
+                                    <span class="dropdown-toggle glyphicon glyphicon-chevron-down" data-toggle="dropdown" aria-expanded="true"></span>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a class="del" data-post="{$t.pid}">删除这条微博</a></li>                    
+                                    </ul>
+                                </div>                   
+                                {/if}                              
+                            </div>
+                        
+                            <div class="content-text">            
+                                {if $t.parent_id != 0/}
+                                <div class="text">{$t.content}//</div>
+                                <div class="glyphicon glyphicon-triangle-top gray_font"></div>
+                                <div class="quotes_cont">                            
+                                    <div class="quotes-head-bar">                               
+                                        <div class="quotes-head-name"><a href="{:url('Homepage/index',['u'=>$t['uid']])}">{$t.username}</a></div>
+                                    </div>
+                                    {if $t.tcont != null/}
+                                    <div class="quotes-content-text">
+                                        <p>{$t.tcont}</p>
+                                    </div>
+                                    <div class="quotes_func">
+                                        <div class="quotes-head-time pull-left">{$t.ttime|tranTime=###}</div>                                
+                                    </div> 
+                                    {else/}   
+                                    <div class="quotes-content-text">
+                                        <p>对方已删除该条说说</p>
+                                    </div>                    
+                                    {/if}
+                                </div>                    
+                                {else /}                       
+                                <div class="text">{$t.content}</div>    
+                                {/if}
+                            </div>
+                                      
+
+                            <div class="func-action">
+                                    <ul class="list-func">
+                                        <li class="list-func-item trans-send"><span class="glyphicon glyphicon-share-alt"></span><i>转发</i></li>
+                                        <li class="list-func-item comment" post="{$t.pid}"><a href="{:url('index/getcomment')}?pid={$t.pid}"><span class="glyphicon glyphicon-list-alt"></span><i>评论</i></a></li>
+                                    </ul>
+                            </div>                            
+                        </div>                   
+                        {/volist}
+                        <!--{循环结束}-->
+                        
+                        <div class="page-list">
+                            {$talk->render()}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <div class="h_25"></div>
+   
+</div>
+{include file="common/footer"/}
+{include file="common/js"/}
+</body>
+</html>

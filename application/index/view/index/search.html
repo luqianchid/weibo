@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    {include file="common/head"/}
+
+    <title>我的文章</title>
+</head>
+<body>
+{include file="common/nav"/}
+<div id="content">
+    <div class="col-md-6 col-md-offset-3">
+    <div><p>根据您的关键词{$keywords},为您找到如下内容：</p></div>
+                {volist name="ArticleRes" id="a"}
+                <div class="article-box">
+                    <div class="article-body">
+                        <div class="article-content">
+                            <div class="art-img"><a href="{:url('Article/index',['artid'=>$a['aid']])}"><img src="__PUBLIC__/{$a.cover}" alt="{$a.title}"></a></div>
+                            <div class="art-title">
+                                <a href="{:url('Article/index',['artid'=>$a['aid']])}" class="a_t">{$a.title}</a>
+                                <div class="time">{$a.create_time}</div>
+                                <div class="desc">
+                                    {$a.intro}
+                                    <a href="{:url('Article/index',['artid'=>$a['aid']])}" style="color: darkgray">阅读全文</a>
+                                </div>
+                            </div>
+                        </div>
+                     </div>
+                </div>
+                {/volist}
+            <div class="page-list">
+                {$ArticleRes->render()}
+            </div>
+            {volist name="TalksRes" id="t"}
+            <div class="sendbox">
+                <div class="head-bar">
+                    <div class="head-image"></div>
+                    <div class="head-name m_15">{$t.username}</div>
+                    <div class="head-time">{$t.add_time|tranTime=###}</div>                                
+                </div>
+                <div class="content-text">
+                    {$t.content}
+                </div>                           
+
+                <div class="func-action">
+                        <ul class="list-func">
+                            <li class="list-func-item trans-send"><span class="glyphicon glyphicon-share-alt"></span><i>转发</i></li>
+                            <li class="list-func-item comment" post="{$t.pid}"><a href="{:url('index/getcomment',['pid'=>$t['pid']])}"><span class="glyphicon glyphicon-list-alt"></span><i>评论</i></a></li>
+                        </ul>
+                </div>                            
+            </div>                   
+            {/volist}
+            <!--{循环结束}-->                        
+            <div class="page-list">
+                {$TalksRes->render()}
+            </div>
+
+            {volist name="UsersRes" id="u"}
+            <div class="focus-row">
+                <div class="focus-cell">
+                    <div class="focus-img"><a href="{:url('Homepage/index',['u'=>$u['id']])}"><img src="__AVATAR__/{$u.avatar}" alt=""></a></div>
+                    <div class="re-focus">
+                        <div class="focus-name">{$u.username}</div>
+                    </div>
+                </div>
+                <div class="focus-cell">
+                    <div class="re-focus">
+                        <div class="focus-name">{$u.email}</div>
+                        <div class="focus-sign">{$u.signnote}</div>                                    
+                    </div>
+                </div>
+            </div>
+            {/volist}
+            <div class="page-list">
+                    {$UsersRes->render()}
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+    <div class="h_25"></div>
+{include file="common/footer"}
+</div>
+
+{include file="common/js"}
+</body>
+</html>
+

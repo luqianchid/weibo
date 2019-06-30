@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    {include file="common/head"/}
+
+    <title>注册</title>
+</head>
+<body>
+{include file="common/nav"/}
+
+<div class="login-bg">
+    <div class="container login">
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4 white-bg"> 
+                <div class="form-bot">
+                        <h3>欢迎注册！</h3>
+                        <p>请完整输入您的信息注册</p>
+                    <form role="form" action="" method="post">
+                        <div class="form-group">
+                            <label class="sr-only" for="username">用户名</label>
+                            <input id="username" type="text" name="username" class="form-control" placeholder="用户名">
+                        </div>
+                        <div class="form-group">
+                            <label class="sr-only" for="password">密码:</label>
+                            <input id="password" type="password" name="password" class="form-control" placeholder="密码">
+                        </div>
+                        <div class="form-group">
+                            <label class="sr-only" for="repassword">确认密码:</label>
+                            <input id="repassword" type="password" name="repassword" class="form-control" placeholder="确认密码">
+                        </div>
+                        <div class="form-group">
+                            <label class="sr-only" for="phone">手机号:</label>
+                            <input id="phone" type="text" name="phone" class="form-control" placeholder="手机号">
+                        </div>
+                        <div class="form-group">
+                            <label class="sr-only" for="iemail">邮箱:</label>
+                            <input id="iemail" type="email" name="email" class="form-control" placeholder="邮箱">
+                        </div>                       
+                        <div class="form-group">
+                            <input class="form-control btn-primary" type="submit" value="注册" id="register"/>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+    </div>
+</div>
+
+{include file="common/footer"/}
+
+{include file="common/js"/}
+
+
+</body>

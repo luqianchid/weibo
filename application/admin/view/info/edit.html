@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {include file="common/head"/}
+    <link rel="stylesheet" href="__PUBLIC__/css/layui.css"  media="all">
+    <title>编辑公告</title>
+</head>
+<body>
+{include file="common/nav"/}
+<div id="Edibox">
+    <div class="col-md-8 col-md-offset-2 info-cont">
+        <div class="formup">
+            <form action="/admin/Info/saveedit" class="form-mt" enctype="multipart/form-data" method="post">
+                {volist name='editinfo' id='e'}
+                <div class="form-group">
+                    <input value="{$e.title}" class="form-title" type="text" name="title" id="art_title" placeholder="请输入标题">
+                </div>
+                <div class="form-group">
+                    <input value="{$e.infoid}" class="form-title" type="hidden" name="infoid" id="art_title" readonly>
+                </div>               
+                <div class="form-group">      
+                    <input class="layui-textarea" value='{$e.content}' id="editor" name="content" style="display: none">  
+                </div>
+                {/volist}
+                <div class="form-group">
+                    <div class="btn-box">
+                        <input type="submit" id="submit" class="btn btn-primary">
+                    </div>
+                </div>                
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="__PUBLIC__/js/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/layui.js"></script>
+<script type="text/javascript">
+    layui.use('layedit', function(){
+    var layedit = layui.layedit,$ = layui.jquery;  
+    //构建一个默认的编辑器
+    var index = layedit.build('editor');      
+   
+   
+    });
+</script>
+</body>
+</html>
+
+
+

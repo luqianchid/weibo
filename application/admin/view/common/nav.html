@@ -1,0 +1,28 @@
+<nav class="nav navbar-default  navbar-inverse" role="navigation">
+		<div class="container">			
+				<div class="navbar-header">
+						<p style="color:#fff">欢迎使用AB后台管理功能</p>
+						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#demo-navbar">
+								<span class="sr-only">AB后台管理系统</span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+						</button>					
+				</div>
+				<div class="collapse navbar-collapse hidden-md" id="demo-navbar">						
+						
+						<ul class="nav navbar-nav navbar-right">								
+								<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" ><span
+												class="glyphicon glyphicon-user"></span>欢迎管理员:{$Request.session.adminname}</a>
+										
+								</li>								
+
+								<li class="dropdown">
+										<a class="dropdown-toggle" href="{:url('admin/logout')}"><span
+												class="glyphicon glyphicon-cog"></span>退出登录</a>
+										
+								</li>								
+						</ul>
+				</div><!--navbar-->
+		</div>
+</nav><!--nav结束-->

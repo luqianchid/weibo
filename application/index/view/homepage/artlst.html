@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    {include file="common/head"/}
+
+    <title>我的文章</title>
+</head>
+<body>
+<div id="content">
+    {include file="common/nav"/}
+    {include file="common/homepage"/}
+                {volist name="artlist" id="a"}
+                <div class="article-box">
+                    <div class="article-body">
+                        <div class="article-content">
+                            <div class="art-img"><a href="{:url('Article/index',['artid'=>$a['aid']])}"><img src="__COVER__/{$a.cover}" alt="{$a.title}"></a></div>
+                            <div class="art-title">
+                                <a href="{:url('Article/index',['artid'=>$a['aid']])}" class="a_t">{$a.title}</a>
+                                <div class="time">{$a.create_time|tranTime=###}</div>
+                                <div class="desc">
+                                    {$a.intro}
+                                    <a href="{:url('Article/index',['artid'=>$a['aid']])}" style="color: darkgray">阅读全文</a>
+                                </div>
+                            </div>
+                        </div>
+                     </div>
+                </div>
+                {/volist}
+            <div class="page-list">
+                {$artlist->render()}
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <div class="h_25"></div>
+
+</div>
+{include file="common/footer"}
+{include file="common/js"}
+</body>
+</html>
+

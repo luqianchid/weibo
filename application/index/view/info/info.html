@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+		{include file="common/head"/}
+
+		<title>文章页</title>
+</head>
+<body>
+<div id="content">
+		{include file="common/nav"/}
+		<!--nav结束-->
+
+		<hr class="h_10">
+
+		<div class="container">
+				<div class="col-md-8 col-md-offset-2 article">
+						{volist name="info" id="i"}						
+						<div class="article-bd">
+								<div class="article-head">
+										{$i.title}
+								</div>
+								<div class="article-info">
+										<ul class="art-info">
+												<li>{$i.admin_name}</li>
+												<li>发布于{$i.create_time|tranTime=###}</li>												
+										</ul>
+								</div>
+								<div class="article-cont">
+									<div class="article-detail">										
+										<div class="article-richtext">
+											{$i.content}
+										</div>												
+									</div>
+								</div>
+								</div>								
+								{/volist}
+
+						<div class="h_25"></div>
+						<div class="article-nominate">
+								<div class="title-bar">其他公告</div>
+								<div class="article-no-list">
+										<ul class="art-no-list">
+												{volist name="infolist" id="li"}
+												<li class="art-no-li-item">
+														<a class="nomi-title" href="{:url('info/index',['infoid'=>$li['infoid']])}">{$li.title}</a>
+														<p>{$li.admin_name}</p>
+														<div class="time">{$li.create_time|tranTime=###}</div>    
+												</li>
+												{/volist}
+										</ul>										
+								</div>
+						</div>
+				</div>
+		</div>
+		<div class="h_25"></div>
+		{include file="common/footer"/}
+</div>
+
+{include file="common/js"/}
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {include file="common/head"/}
+    <title>文章管理页面</title>
+</head>
+<body>
+        {include file="common/nav"/}   
+        {include file="common/left"/}
+<div class="col-md-10 right">
+    
+   
+        <table class="table table-striped table-bordered">
+                <thead class="text-center">
+                    <tr>
+                        <th class="text-center" width="100px">PostID</th>
+                        <th class="text-center">内容</th>
+                        <th class="text-center">用户名</th>
+                        <th class="text-center">创建时间</th>                               
+                        <th class="text-center" width="240px">操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>   
+                    {volist name="talks" id='t'}   
+                    <tr>
+                        <td align="center">{$t.pid}</td>
+                        <td align="center">{$t.content}</a></td>
+                        <td align="center">{$t.username}</td>  
+                        <td align="center">{$t.add_time|date="m-d H:i",###}</td>                              
+                        <td align="center">                                    
+                            <a href="{:url('talks/del',['pid'=>$t['pid']])}" onClick="warning('确实要删除吗')" class="btn btn-danger btn-sm shiny">
+                                <i class="fa fa-trash-o"></i> 删除
+                            </a>
+                        </td>
+                    </tr>     
+                    {/volist}               
+                </tbody>
+                <div class="page-list">
+                    {$talks->render()}
+                </div>
+        </table>
+   
+</div>
+<script>
+    function warning(str){
+        alert(str);
+    }
+</script>
+</body>
+</html>

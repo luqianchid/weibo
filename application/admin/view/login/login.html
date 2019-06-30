@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="__PUBLIC__/css/bootstrap.min.css">
+    <style>
+        .loginbox{
+            width:500px;
+            height:300px;
+            position:absolute;
+            top:50%;
+            left:50%;
+            margin-left:-250px;
+            margin-top:-150px;
+        }
+        body{
+            background: url('__PUBLIC__/imgs/body_bg.jpg');
+        }
+    </style>
+    <title>Login</title>
+</head>
+<body>
+
+<div class="loginbox">
+    <h1>欢迎!</h1>
+    <h2 class="text-center">AlanBlog后台管理系统</h2>
+    <form role="form" action="" method="post" >
+    <div class="form-group">
+        <label class="sr-only" for="adminname">管理员名称</label>
+        <input id="adminname" type="text" name="adminname" class="form-control" placeholder="用户名">
+    </div>
+    <div class="form-group">
+        <label class="sr-only" for="password">管理员密码:</label>
+        <input id="password" type="password" name="password" class="form-control" placeholder="密码">
+    </div>
+    <div class="form-group">
+        <input type="submit" class="form-control btn-primary" value="登陆">           
+    </div>
+    </form>
+</div>
+<!--login区结束-->
+
+</body>
+</html>

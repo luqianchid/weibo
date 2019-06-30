@@ -1,0 +1,15 @@
+
+		<div class="admin_post">
+				<div class="hot_head">
+						<a class="pull-left">公告栏</a>
+
+				</div>
+				<div class="hot_ul">
+						<ul class="list-group">
+								{volist name="infolist" id="il"}
+								<li class="list-group-item"><a href="{:url('info/index',['infoid'=>$il['infoid']])}">{$il.title}</a><span class="pull-right">{$il.create_time|tranTime=###}</span></li>
+								{/volist}
+						</ul>
+				</div>
+		</div>
+</div>

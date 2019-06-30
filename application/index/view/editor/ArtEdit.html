@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		{include file="common/head"/}
+		<title>编辑我的文章</title>
+</head>
+<body>
+{include file="common/nav"/}
+<div class="col-md-12 h100">
+		<div class="col-md-3">
+				<div class="bar-title">管理我的文章</div>
+				<div class="new-art-list">
+						<ul class="art-list">
+								{volist name="artlist" id="art"}
+								<li class="art-list-item">
+									<div class="art-title-url">
+										<a href="{:url('Editor/index',['artid'=>$art['aid']])}">{$art.title}</a>
+										<div class="edited-time">{$art.create_time|date="m-d",###}</div>
+									</div>
+									<div class="art-ctrl">
+											<a href="{:url('Editor/DelArt',['artid'=>$art['aid']])}">删除</a>
+											<a href="{:url('Editor/EditArt',['artid'=>$art['aid']])}">编辑</a>
+									</div>
+								</li>
+								{/volist}
+						</ul>
+				</div>
+		</div>
+		<div class="col-md-8 right-cont">
+				<div class="formup">
+
+						<form action="/index/Editor/saveEdit" class="form-mt" enctype="multipart/form-data" method="post">
+								{volist name="article" id="a"}
+								<div class="form-group">
+										<input class="form-title" type="text" name="title" id="art_title" value="{$a.title}">
+								</div>
+								<div class="form-group">
+										<input class="form-intro" type="text" name="intro" id="art_intro" value="{$a.intro}">
+								</div>
+								<div class="form-group">
+										<input class="form-check" type="hidden" name="id" value="{$a.aid}" readonly>
+								</div>
+								<div class="form-group">
+										<div id="edi" class="form-check" style="height:350px;">{$a.content}</div>
+										<textarea id="editor" class="form-check" name="editor" style="display: none;"></textarea>
+								</div>
+								<div class="form-group">
+									<label for="imgPreview">上传你的封面(比例为10:3)</label>
+									<div id="imgPreview">
+										<div id="prompt3">
+										<span id="imgSpan">
+										点击上传
+											<br />
+										<i class="glyphicon glyphicon-plus"></i>
+											<!--AUI框架中的图标-->
+										</span>
+										<input type="file" id="file" name="cover" class="filepath" onchange="changepic(this)" accept="image/jpg,image/jpeg,image/png,image/PNG">
+											<!--当vaule值改变时执行changepic函数，规定上传的文件只能是图片-->
+										</div>
+										<img src="#" id="img3" />
+									</div> 									
+								</div>								
+								{/volist}								
+								<div class="form-group">
+									<div class="form-send">
+										选择发布方式:
+										<select id="subtype" name="subtype">
+												<option value="1">发布</option>
+												<option value="0">存草稿</option>
+										</select>
+									</div>
+								</div>
+								<div class="form-group">
+										<div class="btn-box">
+												<input type="submit" id="submit" class="btn btn-primary">
+										</div>
+								</div>
+						</form>
+				</div>
+		</div>
+</div>
+
+{include file="common/js"/}
+
+<script type="text/javascript" src="__PUBLIC__/js/wangEditor.min.js"></script>
+<script type="text/javascript">
+    var E = window.wangEditor;
+    var edi = new E('#edi');
+	var $editor = $('#editor');
+	edi.customConfig.menus = [
+        'bold',  // 粗体
+        'fontSize',  // 字号 
+        'link',  // 插入链接
+        'justify',  // 对齐方式
+        'image',  // 插入图片
+    ]
+    edi.customConfig.onchange = function (html) {
+        // 监控变化，同步更新到 textarea
+        $editor.val(html)
+    }
+    edi.create()
+    // 初始化 textarea 的值
+    $editor.val(edi.txt.html())
+</script>
+<script type="text/javascript">
+	function changepic() {
+        $("#prompt3").css("display", "none");
+        var reads = new FileReader();
+        f = document.getElementById('file').files[0];
+        reads.readAsDataURL(f);
+        reads.onload = function(e) {
+        document.getElementById('img3').src = this.result;
+        $("#img3").css("display", "block");
+        };
+    }
+</script>
+</body>
+</html>
+
+
+
